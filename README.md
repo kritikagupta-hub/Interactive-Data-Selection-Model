@@ -222,6 +222,10 @@ This makes the exported data suitable for:
 
 This project was developed as an interactive research-oriented prototype for efficient selection of labeled training data from volumetric scientific datasets.
 
+## Acknowledgement
+
+This project was developed under the guidance of **Dr. Soumya Dutta**, Assistant Professor, Department of Computer Science and Engineering, IIT Kanpur.
+
 ## Author
 
 **Kritika Gupta**  
