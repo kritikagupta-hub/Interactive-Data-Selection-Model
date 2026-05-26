@@ -12,7 +12,14 @@
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/01-home.png" alt="Full application interface" width="900">
+  <img src="assets/screenshots/01-full-interface-new.png" alt="Full application interface" width="900">
+</p>
+
+<p align="center">
+  <a href="#guided-demo-walkthrough">Demo Walkthrough</a> •
+  <a href="#features">Features</a> •
+  <a href="#requirements">Requirements</a> •
+  <a href="#running-the-project">Run Project</a>
 </p>
 
 ## Project Overview
@@ -30,13 +37,23 @@ Built using **Python, VTK, PyQt5, Matplotlib, and NumPy**, the tool combines:
 - **brushing and filtering** for fine-grained sample refinement
 - labeled output generation for downstream **machine learning training**
 
-## Key Highlights
+## Why This Project Matters
 
 - Identified a core user pain point: manual filtering of large 3D volumetric datasets for training data creation.
 - Designed and developed an interactive labeled data selection workflow to solve the problem end-to-end.
 - Collaborated on requirements, refined the interface through feedback, and delivered a usable research prototype.
 - Enabled intuitive 3D filtering with sphere widgets, isosurface rendering, and volume rendering in one interface.
 - Supported real-time visual exploration and export of labeled samples for ML model training.
+
+## At a Glance
+
+| Stage | What the user does | What the tool enables |
+| --- | --- | --- |
+| **1. Load Data** | Open any supported `.vti` dataset | Reads volumetric data and available variables dynamically |
+| **2. Explore in 3D** | Turn on isosurface mode, volume rendering mode, or both | Real-time structural and volumetric inspection |
+| **3. Select Region** | Place sphere widgets in the 3D view | Region-focused spatial filtering for training samples |
+| **4. Refine in PCP** | Send selected points to the PCP and brush variables | Multivariate filtering before export |
+| **5. Label and Save** | Assign a label and export data | Creates ML-ready `X Y Z Label` output |
 
 ## Features
 
@@ -73,43 +90,50 @@ Assign a label value
 Save the selected data for model training
 ```
 
-## Demo Preview
+## Guided Demo Walkthrough
 
 ### 1. Full Interface
 
-Main workspace showing the 3D viewport, rendering controls, PCP variable panel, sphere selection tools, and output area.
+The main workspace brings together the 3D viewport, rendering controls, PCP variable controls, sphere selection tools, and export panel in one place.
 
 <p align="center">
-  <img src="assets/screenshots/01-home.png" alt="Full interface" width="900">
+  <img src="assets/screenshots/01-full-interface-new.png" alt="Full interface" width="900">
 </p>
 
-### 2. Isosurface Rendering
+### 2. Isosurface Mode
 
-Interactive isosurface rendering for extracting structural regions from volumetric data.
+After loading data, users can enable isosurface mode to reveal structural patterns and inspect extracted surfaces interactively.
 
 <p align="center">
-  <img src="assets/screenshots/02-isosurface-and-volume-controls.png" alt="Isosurface rendering" width="900">
+  <img src="assets/screenshots/02-isosurface-new.png" alt="Isosurface rendering view" width="900">
 </p>
 
-### 3. Volume Rendering
+### 3. Volume Rendering Mode
 
-Real-time volume rendering with colormap and opacity transfer function controls for internal feature visualization.
+Volume rendering can be enabled independently, or together with isosurfaces, to expose internal volumetric patterns using transfer-function-based opacity and color controls.
 
 <p align="center">
-  <img src="assets/screenshots/03-volume-rendering.png" alt="Volume rendering" width="900">
+  <img src="assets/screenshots/03-volume-rendering-new.png" alt="Volume rendering view" width="900">
 </p>
 
-### 4. Sphere Widget Selection + PCP + Brushing
+### 4. Sphere Selection + PCP + Brushing
 
-Selected 3D regions are pushed into the PCP view, where brushing can be used to refine the final labeled training subset.
+Once a meaningful region is identified, sphere widgets can be used to select localized data points. These points are then pushed to the PCP view for variable-wise inspection and brushing-based refinement before labeling and export.
 
 <p align="center">
-  <img src="assets/screenshots/04-sphere-selection-pcp.png" alt="Sphere widget data selection with PCP" width="900">
+  <img src="assets/screenshots/04-selection-pcp-brushing-new.png" alt="Sphere selection with PCP and brushing" width="900">
 </p>
 
-<p align="center">
-  <img src="assets/screenshots/05-pcp-brushing.png" alt="PCP brushing feature" width="900">
-</p>
+<details>
+  <summary><strong>What makes the interaction useful?</strong></summary>
+
+  <br>
+
+  - Any `.vti` dataset can be loaded into the interface.
+  - Isosurface mode and volume rendering mode can be used independently or together.
+  - Sphere widgets provide intuitive spatial selection directly inside the 3D scene.
+  - PCP and brushing make it easier to refine selected samples before saving them for model training.
+</details>
 
 ## Technologies Used
 
