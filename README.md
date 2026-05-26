@@ -1,7 +1,7 @@
-# Interactive 3D Scientific Data Visualization and ML Annotation Tool
+# Interactive Selection of Training Data for 3D Volumetric Datasets
 
 <p align="center">
-  Explore volumetric scientific data, isolate 3D regions of interest, analyze 14 variables together, and export labeled samples for ML workflows.
+  An interactive desktop tool for loading volumetric `.vti` data, exploring it in 3D, selecting labeled regions of interest, and exporting training data for machine learning workflows.
 </p>
 
 <p align="center">
@@ -12,119 +12,174 @@
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/01-home.png" alt="Application home screen" width="900">
+  <img src="assets/screenshots/01-home.png" alt="Full application interface" width="900">
 </p>
 
-## Overview
+## Project Overview
 
-This project is an interactive desktop application built for **scientific data exploration, visual analytics, and machine learning data annotation**. It is designed around the **Isabel hurricane dataset** and combines 3D rendering with parallel-coordinates-based analysis in one workflow.
+Researchers often spend a large amount of time manually sifting through 3D volumetric datasets to identify meaningful regions for analysis and model training. This project was designed to reduce that effort through an interactive training data selection tool that supports end-to-end exploration, filtering, selection, and export of labeled data.
 
-Instead of only visualizing a dataset, the tool helps you:
+The system was developed collaboratively by understanding research needs, iterating on the interface based on feedback, and delivering a working prototype that significantly reduces manual data selection effort.
 
-- inspect scalar fields in 3D
-- isolate regions of interest using sphere widgets
-- compare multiple variables simultaneously
-- interactively brush high-dimensional patterns
-- export labeled samples for downstream ML training
+Built using **Python, VTK, PyQt5, Matplotlib, and NumPy**, the tool combines:
 
-## Why This Project Stands Out
+- interactive **isosurface rendering**
+- real-time **volume rendering**
+- **sphere widget**-based region selection
+- **parallel coordinates plots (PCP)** for multivariate inspection
+- **brushing and filtering** for fine-grained sample refinement
+- labeled output generation for downstream **machine learning training**
 
-- **3D + ML workflow in one interface**: visualization, selection, filtering, and labeling happen in the same app
-- **Dual rendering modes**: use isosurface rendering and volume rendering independently or together
-- **High-dimensional analytics**: selected points are projected into a parallel coordinates plot across 14 variables
-- **Interactive annotation**: assign labels on a `0.0 -> 1.0` scale for curated ML-ready outputs
-- **Research-friendly export**: save selected coordinates directly in `X Y Z Label` format
+## Key Highlights
 
-## Core Features
+- Identified a core user pain point: manual filtering of large 3D volumetric datasets for training data creation.
+- Designed and developed an interactive labeled data selection workflow to solve the problem end-to-end.
+- Collaborated on requirements, refined the interface through feedback, and delivered a usable research prototype.
+- Enabled intuitive 3D filtering with sphere widgets, isosurface rendering, and volume rendering in one interface.
+- Supported real-time visual exploration and export of labeled samples for ML model training.
 
-| Feature | What it does |
+## Features
+
+| Feature | Description |
 | --- | --- |
-| **Load `.vti` data** | Opens volumetric VTK image datasets with multiple scalar variables |
-| **Isosurface rendering** | Generates multiple isosurfaces with per-surface variable, opacity, and visibility controls |
-| **Volume rendering** | Applies GPU-based volume rendering with colormap and opacity transfer function editing |
-| **Sphere selection** | Lets you place one or more 3D sphere widgets to isolate local regions |
-| **Parallel Coordinates Plot** | Displays selected samples across multiple variables for high-dimensional inspection |
-| **Brushing** | Filters selected samples directly inside the PCP before export |
-| **Labeled export** | Saves curated points as training-ready output with user-defined labels |
+| **Load volumetric datasets** | Open `.vti` files and inspect available scalar variables dynamically |
+| **Isosurface mode** | Generate and manage one or more isosurfaces with variable and opacity controls |
+| **Volume rendering mode** | Visualize internal structures using transfer functions and colormap controls |
+| **Combined rendering** | Run isosurface mode, volume mode, or both together in the same session |
+| **Sphere widget selection** | Select spatial regions of interest directly inside the 3D view |
+| **PCP visualization** | Inspect selected points across multiple variables using a parallel coordinates plot |
+| **Brushing support** | Refine the selected subset interactively before export |
+| **Labeled export** | Save selected samples in `X Y Z Label` format for ML pipelines |
 
-## Dataset Context
+## Workflow
 
-This tool is designed for the **Isabel hurricane dataset**, a well-known scientific visualization dataset.
-
-**Supported variables**
-
-`P`, `TC`, `CLOUD`, `PRECIP`, `QCLOUD`, `QGRAUP`, `QICE`, `QRAIN`, `QSNOW`, `QVAPOR`, `U`, `V`, `W`, `Velocity`
-
-## Visual Workflow
+This tool supports a simple research workflow:
 
 ```text
-Load .vti dataset
+Load any .vti dataset
       ->
-Choose Isosurface and/or Volume Rendering
+Enable Isosurface Mode, Volume Rendering Mode, or both
       ->
-Adjust opacity, visibility, colormap, and transfer function
+Explore the 3D data in real time
       ->
-Add sphere widgets to mark regions of interest
+Add sphere widgets to select regions of interest
       ->
-Show selection in PCP
+Show selected points in the PCP panel
       ->
-Brush axes to refine the subset
+Brush/filter the PCP to refine the subset
       ->
-Assign label
+Assign a label value
       ->
-Export ML-ready points
+Save the selected data for model training
 ```
 
-## Interface Highlights
+## Demo Preview
 
-### 1. Main Workspace
+### 1. Full Interface
 
-Clean layout with 3D viewport, rendering controls, PCP variable toggles, and output panel.
-
-<p align="center">
-  <img src="assets/screenshots/01-home.png" alt="Main workspace" width="900">
-</p>
-
-### 2. Isosurface and Volume Controls
-
-The right panel supports both rendering pipelines independently, making it easy to compare extracted structures with full volumetric context.
+Main workspace showing the 3D viewport, rendering controls, PCP variable panel, sphere selection tools, and output area.
 
 <p align="center">
-  <img src="assets/screenshots/02-isosurface-and-volume-controls.png" alt="Isosurface and volume controls" width="900">
+  <img src="assets/screenshots/01-home.png" alt="Full interface" width="900">
 </p>
 
-### 3. Volume Rendering with Transfer Function
+### 2. Isosurface Rendering
 
-Adjust colormaps and opacity mapping to reveal internal volumetric structures more clearly.
+Interactive isosurface rendering for extracting structural regions from volumetric data.
 
 <p align="center">
-  <img src="assets/screenshots/03-volume-rendering.png" alt="Volume rendering view" width="900">
+  <img src="assets/screenshots/02-isosurface-and-volume-controls.png" alt="Isosurface rendering" width="900">
 </p>
 
-### 4. Sphere-Based Selection + PCP
+### 3. Volume Rendering
 
-Selected regions are sent directly into a parallel coordinates plot for multivariate inspection.
+Real-time volume rendering with colormap and opacity transfer function controls for internal feature visualization.
 
 <p align="center">
-  <img src="assets/screenshots/04-sphere-selection-pcp.png" alt="Sphere selection and PCP output" width="900">
+  <img src="assets/screenshots/03-volume-rendering.png" alt="Volume rendering" width="900">
 </p>
 
-### 5. PCP Brushing for Fine Filtering
+### 4. Sphere Widget Selection + PCP + Brushing
 
-Interactive brushing helps narrow the subset before saving labeled output.
+Selected 3D regions are pushed into the PCP view, where brushing can be used to refine the final labeled training subset.
 
 <p align="center">
-  <img src="assets/screenshots/05-pcp-brushing.png" alt="PCP brushing" width="900">
+  <img src="assets/screenshots/04-sphere-selection-pcp.png" alt="Sphere widget data selection with PCP" width="900">
 </p>
 
-## Tech Stack
+<p align="center">
+  <img src="assets/screenshots/05-pcp-brushing.png" alt="PCP brushing feature" width="900">
+</p>
 
-- **Python**
-- **VTK** for 3D visualization and interaction
-- **PyQt5** for the desktop interface
-- **Matplotlib** for the PCP and transfer function views
-- **NumPy** for data operations
-- **SciPy** for scientific utilities
+## Technologies Used
+
+- Python
+- VTK
+- PyQt5
+- Matplotlib
+- NumPy
+
+No separate JavaScript or HTML/CSS runtime is required for this desktop application.
+
+## Requirements
+
+### Software Requirements
+
+- Python 3.8 or above
+- Python 3.10 recommended
+- VTK 9.x
+- PyQt5 5.15+
+- NumPy 1.21+
+- Matplotlib 3.5+
+
+### System Configuration
+
+- Operating System: Windows 10/11
+- RAM: Minimum 4 GB
+- Processor: Intel i3 or above
+- Disk Space: 500 MB free space
+
+### Python Libraries Installation
+
+```bash
+pip install vtk pyqt5 numpy matplotlib
+```
+
+Or install directly from the project requirements file:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Project
+
+### Standard Run
+
+```bash
+python vtk_final.py
+```
+
+### Jupyter Notebook Run
+
+```python
+%gui qt5
+%run vtk_final.py
+```
+
+## Output Format
+
+The selected and labeled output is stored in the following format:
+
+```text
+X  Y  Z  Label
+```
+
+This makes the exported data suitable for:
+
+- supervised learning pipelines
+- scientific classification workflows
+- curated training data generation
+- feature-driven model experimentation
 
 ## Project Structure
 
@@ -139,58 +194,9 @@ Interactive brushing helps narrow the subset before saving labeled output.
 `-- README.md
 ```
 
-## Installation
+## Academic Context
 
-```bash
-pip install -r requirements.txt
-```
-
-## Run the Application
-
-### Standard Python Run
-
-```bash
-python vtk_final.py
-```
-
-### Jupyter Notebook Run
-
-```python
-%gui qt5
-%run vtk_final.py
-```
-
-## Export Format
-
-Saved output follows this structure:
-
-```text
-X  Y  Z  Label
-```
-
-This makes it convenient to build datasets for:
-
-- supervised learning
-- anomaly/stall detection experiments
-- scientific classification workflows
-- feature engineering pipelines
-
-## Requirements
-
-```text
-vtk>=9.0.0
-PyQt5>=5.15.0
-matplotlib>=3.5.0
-numpy>=1.21.0
-scipy>=1.7.0
-```
-
-## Potential Use Cases
-
-- **Scientific visualization** for climate and simulation data
-- **Interactive ML annotation** for training data creation
-- **Pattern discovery** in high-dimensional volumetric datasets
-- **Research demos** and academic project presentations
+This project was developed as an interactive research-oriented prototype for efficient selection of labeled training data from volumetric scientific datasets.
 
 ## Author
 
